@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>grand_tour_ros1</name>
+    <version>1.0.0</version>
+    <description>grand_tour_ros1 examples</description>
+    <license>Proprietary</license>
+    <author email="jonfrey@ethz.ch">Jonas Frey</author>
+    <maintainer email="jonfrey@ethz.ch">Jonas Frey</maintainer>
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>anymal_d_simple_description</depend>
+    <depend>box_model</depend>
+    <depend>anymal_msgs</depend>
+    <depend>gnss_msgs</depend>
+</package>

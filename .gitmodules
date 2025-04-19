@@ -1,0 +1,6 @@
+[submodule "examples_ros1/submodules/anymal_d_simple_description"]
+	path = examples_ros1/submodules/anymal_d_simple_description
+	url = git@github.com:leggedrobotics/anymal_d_simple_description.git
+[submodule "examples_ros1/submodules/grand_tour_box"]
+	path = examples_ros1/submodules/grand_tour_box
+	url = git@github.com:leggedrobotics/grand_tour_box.git

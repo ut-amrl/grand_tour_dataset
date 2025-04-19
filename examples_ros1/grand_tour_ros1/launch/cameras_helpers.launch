@@ -1,0 +1,99 @@
+<launch>
+    <!-- Arguments to enable or disable uncompression and undistortion -->
+    <arg name="enable_uncompression" default="true" />
+    <arg name="enable_undistortion" default="true" />
+
+    <node name="rviz_lidar" pkg="rviz" type="rviz"
+        args="-d $(find grand_tour_ros1)/cfg/cameras_helpers.rviz" />
+    <include file="$(find box_model)/launch/box_model.launch" />
+    <include file="$(find anymal_d_simple_description)/launch/load.launch" />
+
+    <!-- Nodes to uncompress the images -->
+    <group if="$(arg enable_uncompression)">
+        <!-- HDR Cameras -->
+        <node name="img_transport_hdr_front" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/hdr/front/image_raw raw out:=/boxi/hdr/front/image_raw" />
+        <!-- <node name="img_transport_hdr_left" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/hdr/left/image_raw raw out:=/boxi/hdr/left/image_raw" />
+        <node name="img_transport_hdr_right" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/hdr/right/image_raw raw out:=/boxi/hdr/right/image_raw" /> -->
+
+        <!-- Alphasense Cameras
+        <node name="img_transport_alphasense_front_center" pkg="image_transport"
+            type="republish"
+            output="screen"
+            args="compressed in:=/boxi/alphasense/front_center/image_raw/compressed raw
+        out:=/boxi/alphasense/front_center/image_raw" />
+        <node name="img_transport_alphasense_front_left" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/alphasense/front_left/image_raw/compressed raw
+        out:=/boxi/alphasense/front_left/image_raw" />
+        <node name="img_transport_alphasense_front_right" pkg="image_transport"
+            type="republish"
+            output="screen"
+            args="compressed in:=/boxi/alphasense/front_right/image_raw/compressed raw
+        out:=/boxi/alphasense/front_right/image_raw" />
+        <node name="img_transport_alphasense_left" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/alphasense/left/image_raw/compressed raw
+        out:=/boxi/alphasense/left/image_raw" />
+        <node name="img_transport_alphasense_right" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/alphasense/right/image_raw/compressed raw
+        out:=/boxi/alphasense/right/image_raw" /> -->
+    </group>
+
+    <!-- Nodes to undistort the images -->
+    <group if="$(arg enable_undistortion)">
+        <!-- <node name="img_undistort_alphasense_front_center" pkg="image_proc" type="image_proc"
+            output="screen">
+            <remap from="image_raw" to="/boxi/alphasense/front_center/image_raw" />
+            <remap from="camera_info" to="/boxi/alphasense/front_center/camera_info" />
+        </node>
+
+        <node name="img_undistort_alphasense_front_left" pkg="image_proc" type="image_proc"
+            output="screen">
+            <remap from="image_raw" to="/boxi/alphasense/front_left/image_raw" />
+            <remap from="camera_info" to="/boxi/alphasense/front_left/camera_info" />
+        </node>
+
+        <node name="img_undistort_alphasense_front_right" pkg="image_proc" type="image_proc"
+            output="screen">
+            <remap from="image_raw" to="/boxi/alphasense/front_right/image_raw" />
+            <remap from="camera_info" to="/boxi/alphasense/front_right/camera_info" />
+        </node>
+
+        <node name="img_undistort_alphasense_left" pkg="image_proc" type="image_proc"
+            output="screen">
+            <remap from="image_raw" to="/boxi/alphasense/left/image_raw" />
+            <remap from="camera_info" to="/boxi/alphasense/left/camera_info" />
+        </node>
+
+        <node name="img_undistort_alphasense_right" pkg="image_proc" type="image_proc"
+            output="screen">
+            <remap from="image_raw" to="/boxi/alphasense/right/image_raw" />
+            <remap from="camera_info" to="/boxi/alphasense/right/camera_info" />
+        </node> -->
+        <node
+            name="img_undistort_hdr_front" pkg="image_proc" type="image_proc" output="screen"
+            ns="/boxi/hdr/front">
+            <remap from="image_raw" to="image_raw" />
+            <remap from="camera_info" to="camera_info" />
+        </node>
+
+        <!-- <node name="img_undistort_hdr_left" pkg="image_proc" type="image_proc" output="screen">
+            <remap from="image_raw" to="/boxi/hdr/left/image_raw" />
+            <remap from="camera_info" to="/boxi/hdr/left/camera_info" />
+        </node>
+
+        <node name="img_undistort_hdr_right" pkg="image_proc" type="image_proc" output="screen">
+            <remap from="image_raw" to="/boxi/hdr/right/image_raw" />
+            <remap from="camera_info" to="/boxi/hdr/right/camera_info" />
+        </node> -->
+
+    </group>
+
+</launch>
