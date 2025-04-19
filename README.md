@@ -1,7 +1,7 @@
 
 <h1 align="center" style="margin-bottom: 0;">
   <br>
-  GrandTour Dataset
+  The GrandTour Dataset
   <br>
 </h1>
 <p align="center">
