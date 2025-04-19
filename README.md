@@ -12,17 +12,8 @@
   <a href="#hugging-face-instructions">Hugging Face</a> •
   <a href="#ros1-instructions">ROS1</a> •
   <a href="#contributing">Contributing</a>  •
-  <a href="#citing">Citing</a> •  
+  <a href="#citing">Citing</a>
 </p>
-
-
-
-<!-- [START BADGES] -->
-<!-- Please keep comment here to allow auto update -->
-<p align="center">
-  <a href="[https://github.com/wow-actions/add-badges/blob/master/LICENSE"><img src="https://img.shields.io/github/license/wow-actions/add-badges?style=flat-square" alt="MIT License" /></a>
-</p>
-<!-- [END BADGES] -->
 
 ## References
 
@@ -141,7 +132,7 @@ Let’s build this together — your input matters!
     YEAR      = {2025},
 }
 ```
-Shared first authorship Frey, Tuna, Fu.
+*shared first authorship: Frey, Tuna, Fu.
 
 ```bibtex
 @INPROCEEDINGS{Tuna-Frey-IJRR-25,
@@ -153,4 +144,4 @@ Shared first authorship Frey, Tuna, Fu.
     MONTH     = {July}
 }
 ```
-Shared first authorship Frey, Tuna.
+*shared first authorship: Frey, Tuna.
