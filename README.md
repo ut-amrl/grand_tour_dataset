@@ -3,8 +3,10 @@
   <br>
   GrandTour Dataset
   <br>
-   <span style="font-size: small; display: block; margin-top: -2px; font-weight: normal;"><em>A project brought to you by <a href="https://rsl.ethz.ch/">RSL - ETH Zurich</a>.</em></span>
 </h1>
+<p align="center">
+  <em><small>A project brought to you by <a href="https://rsl.ethz.ch/">RSL - ETH Zurich</a>.</small></em>
+</p>
 <p align="center">
   <a href="#references">References</a> •
   <a href="#hugging-face-instructions">Hugging Face</a> •
@@ -46,8 +48,16 @@ mkdir -p ~/git
 
 ### Clone and Link Submodules
 ```shell
+# Cloning the repository
 cd ~/git
 git clone --recurse-submodules git@github.com:leggedrobotics/grand_tour_dataset.git
+
+# Checkout only the required packages from the grand_tour_box repository for simplicity
+cd ~/git/grand_tour_dataset/examples_ros1/submodules/grand_tour_box
+git sparse-checkout init --cone
+git sparse-checkout set box_model box_calibration box_drivers/anymal_msgs box_drivers/gnss_msgs
+
+# Link the repository to the workspace
 ln -s ~/git/grand_tour_dataset/examples_ros1 ~/grand_tour_ws/src/
 ```
 
@@ -144,11 +154,3 @@ Shared first authorship Frey, Tuna, Fu.
 }
 ```
 Shared first authorship Frey, Tuna.
-
-# Helper: Sparse Checkout
-To set up sparse checkout for the repository:
-```shell
-cd ~/git/grand_tour_dataset/examples_ros1/submodules/grand_tour_box
-git sparse-checkout init --cone
-git sparse-checkout set box_model box_calibration box_drivers/anymal_msgs box_drivers/gnss_msgs
-```
