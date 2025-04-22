@@ -100,9 +100,9 @@ You can also try the same for `cameras.launch`.
 
 **Example Output:**
 
-| **LiDAR Visualization**                                                                                 | **Camera Visualization**                                                                              |
-| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| ![LiDAR Visualization](assets/rviz-lidar.gif) <br> *Visualization of LiDAR data using `lidars.launch`.* | ![Camera Visualization](assets/rviz-lidar.gif) <br> *Visualization of images using `cameras.launch`.* |
+| **LiDAR Visualization**                                                                                 | **Camera Visualization**                                                                               |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| ![LiDAR Visualization](assets/rviz-lidar.gif) <br> *Visualization of LiDAR data using `lidars.launch`.* | ![Camera Visualization](assets/rviz-camera.gif) <br> *Visualization of images using `cameras.launch`.* |
 
 
 
