@@ -2,7 +2,7 @@
     <arg name="box_namespace" default="gt_box" />
     <group ns="grand_tour">
         <node name="rviz_lidars" pkg="rviz" type="rviz"
-            args="-d $(find grand_tour_ros1)/cfg/cameras.rviz" />
+            args="-d $(find grand_tour_ros1)/cfg/lidars.rviz" />
         <include file="$(find box_model)/launch/box_model.launch" />
         <include file="$(find anymal_d_simple_description)/launch/load.launch" />
     </group>

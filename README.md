@@ -41,7 +41,8 @@ mkdir -p ~/git
 ```shell
 # Cloning the repository
 cd ~/git
-git clone --recurse-submodules git@github.com:leggedrobotics/grand_tour_dataset.git
+git clone git@github.com:leggedrobotics/grand_tour_dataset.git
+cd grand_tour_dataset; git submodule update --init
 
 # Checkout only the required packages from the grand_tour_box repository for simplicity
 cd ~/git/grand_tour_dataset/examples_ros1/submodules/grand_tour_box
@@ -95,6 +96,15 @@ rosrun grand_tour_ros1 rosbag_play.sh --lidars --tf_model
 ```
 
 You can also try the same for `cameras.launch`.
+
+
+**Example Output:**
+
+| **LiDAR Visualization**                                                                                 | **Camera Visualization**                                                                              |
+| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| ![LiDAR Visualization](assets/rviz-lidar.gif) <br> *Visualization of LiDAR data using `lidars.launch`.* | ![Camera Visualization](assets/rviz-lidar.gif) <br> *Visualization of images using `cameras.launch`.* |
+
+
 
 #### Image Uncompression and Rectification
 We provide a launch file to uncompress images and publish rectified images. Install the required dependencies:
