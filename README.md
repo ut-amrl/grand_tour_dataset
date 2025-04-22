@@ -110,12 +110,12 @@ roslaunch grand_tour_ros1 cameras_helpers.launch
 #### IMUs Visualization
 We use rqt-multiplot to visualize the IMU measurments.
 
-Install rqt-multiplot
+Install [rqt_multiplot](https://wiki.ros.org/rqt_multiplot):
 ```shell
 sudo apt-get install ros-noetic-rqt-multiplot -y
 ```
 
-Start rqt-multiplot and replay the bags
+Start rqt_multiplot and replay the bags:
 ```shell
 roslaunch grand_tour_ros1 imus.launch
 ```
