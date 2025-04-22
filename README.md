@@ -96,7 +96,7 @@ rosrun grand_tour_ros1 rosbag_play.sh --lidars --tf_model
 
 You can also try the same for `cameras.launch`.
 
-#### Additional Launch File
+#### Image Uncompression and Rectification
 We provide a launch file to uncompress images and publish rectified images. Install the required dependencies:
 ```shell
 sudo apt-get install ros-noetic-image-transport
@@ -106,6 +106,26 @@ sudo apt-get install ros-noetic-compressed-image-transport
 ```shell
 roslaunch grand_tour_ros1 cameras_helpers.launch
 ```
+
+#### IMUs Visualization
+We use rqt-multiplot to visualize the IMU measurments.
+
+Install rqt-multiplot
+```shell
+sudo apt-get install ros-noetic-rqt-multiplot -y
+```
+
+Start rqt-multiplot and replay the bags
+```shell
+roslaunch grand_tour_ros1 imus.launch
+```
+```shell
+cd ~/grand_tour_ws/src/examples_ros1/data
+rosrun grand_tour_ros1 rosbag_play.sh --imus --ap20
+```
+
+**Example Output:**
+![assets/rqt-multiplot.png](assets/rqt-multiplot.png)
 
 ## Contributing
 We warmly welcome contributions to help us improve and expand this project. Whether you're interested in adding new examples, enhancing existing ones, or simply offering suggestions — we'd love to hear from you! Feel free to open an issue or reach out directly.

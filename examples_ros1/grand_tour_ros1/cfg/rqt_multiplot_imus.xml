@@ -35,7 +35,7 @@
                                         <relative_minimum>-100</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu</topic>
+                                    <topic>/boxi/ap20/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -48,7 +48,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu</topic>
+                                    <topic>/boxi/ap20/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -86,7 +86,7 @@
                                         <relative_minimum>-100</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/cpt7/imu/data_raw</topic>
+                                    <topic>/boxi/cpt7/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -99,7 +99,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/cpt7/imu/data_raw</topic>
+                                    <topic>/boxi/cpt7/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -137,7 +137,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/alphasense_driver_node/imu</topic>
+                                    <topic>/boxi/alphasense/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -150,7 +150,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/alphasense_driver_node/imu</topic>
+                                    <topic>/boxi/alphasense/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -188,7 +188,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/livox/imu_si_compliant</topic>
+                                    <topic>/boxi/livox/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -201,7 +201,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/livox/imu_si_compliant</topic>
+                                    <topic>/boxi/livox/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -239,7 +239,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/adis16475_node/imu</topic>
+                                    <topic>/boxi/adis/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -252,7 +252,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/adis16475_node/imu</topic>
+                                    <topic>/boxi/adis/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -290,7 +290,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/stim320/imu</topic>
+                                    <topic>/boxi/stim320/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -303,7 +303,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/stim320/imu</topic>
+                                    <topic>/boxi/stim320/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -329,6 +329,57 @@
                             <subscriber_queue_size>100</subscriber_queue_size>
                             <title>STIM320</title>
                         </curve_5>
+                        <curve_6>
+                            <axes>
+                                <x_axis>
+                                    <field>header/stamp</field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/anymal/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </x_axis>
+                                <y_axis>
+                                    <field>linear_acceleration/x</field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/anymal/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </y_axis>
+                            </axes>
+                            <color>
+                                <custom_color>#c80003</custom_color>
+                                <type>1</type>
+                            </color>
+                            <data>
+                                <circular_buffer_capacity>1000</circular_buffer_capacity>
+                                <time_frame_length>10</time_frame_length>
+                                <type>3</type>
+                            </data>
+                            <style>
+                                <lines_interpolate>false</lines_interpolate>
+                                <pen_style>1</pen_style>
+                                <pen_width>1</pen_width>
+                                <render_antialias>false</render_antialias>
+                                <steps_invert>false</steps_invert>
+                                <sticks_baseline>0</sticks_baseline>
+                                <sticks_orientation>2</sticks_orientation>
+                                <type>0</type>
+                            </style>
+                            <subscriber_queue_size>100</subscriber_queue_size>
+                            <title>ANYmal</title>
+                        </curve_6>
                     </curves>
                     <legend>
                         <visible>true</visible>
@@ -366,7 +417,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu</topic>
+                                    <topic>/boxi/ap20/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -379,7 +430,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu</topic>
+                                    <topic>/boxi/ap20/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -417,7 +468,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/cpt7/imu/data_raw</topic>
+                                    <topic>/boxi/cpt7/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -430,7 +481,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/cpt7/imu/data_raw</topic>
+                                    <topic>/boxi/cpt7/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -468,7 +519,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/alphasense_driver_node/imu</topic>
+                                    <topic>/boxi/alphasense/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -481,7 +532,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/alphasense_driver_node/imu</topic>
+                                    <topic>/boxi/alphasense/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -519,7 +570,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/livox/imu_si_compliant</topic>
+                                    <topic>/boxi/livox/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -532,7 +583,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/livox/imu_si_compliant</topic>
+                                    <topic>/boxi/livox/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -570,7 +621,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/adis16475_node/imu</topic>
+                                    <topic>/boxi/adis/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
@@ -583,7 +634,7 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/adis16475_node/imu</topic>
+                                    <topic>/boxi/adis/imu</topic>
                                     <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
@@ -609,6 +660,108 @@
                             <subscriber_queue_size>100</subscriber_queue_size>
                             <title>ADIS</title>
                         </curve_4>
+                        <curve_5>
+                            <axes>
+                                <x_axis>
+                                    <field>header/stamp</field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/boxi/stim320/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </x_axis>
+                                <y_axis>
+                                    <field>linear_acceleration/x</field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/boxi/stim320/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </y_axis>
+                            </axes>
+                            <color>
+                                <custom_color>#000000</custom_color>
+                                <type>0</type>
+                            </color>
+                            <data>
+                                <circular_buffer_capacity>1000</circular_buffer_capacity>
+                                <time_frame_length>10</time_frame_length>
+                                <type>3</type>
+                            </data>
+                            <style>
+                                <lines_interpolate>false</lines_interpolate>
+                                <pen_style>1</pen_style>
+                                <pen_width>1</pen_width>
+                                <render_antialias>false</render_antialias>
+                                <steps_invert>false</steps_invert>
+                                <sticks_baseline>0</sticks_baseline>
+                                <sticks_orientation>2</sticks_orientation>
+                                <type>0</type>
+                            </style>
+                            <subscriber_queue_size>100</subscriber_queue_size>
+                            <title>STIM320</title>
+                        </curve_5>
+                        <curve_6>
+                            <axes>
+                                <x_axis>
+                                    <field></field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/boxi/alphasense/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </x_axis>
+                                <y_axis>
+                                    <field>angular_velocity/x</field>
+                                    <field_type>0</field_type>
+                                    <scale>
+                                        <absolute_maximum>1000</absolute_maximum>
+                                        <absolute_minimum>0</absolute_minimum>
+                                        <relative_maximum>0</relative_maximum>
+                                        <relative_minimum>-1000</relative_minimum>
+                                        <type>0</type>
+                                    </scale>
+                                    <topic>/anymal/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
+                                </y_axis>
+                            </axes>
+                            <color>
+                                <custom_color>#c80003</custom_color>
+                                <type>1</type>
+                            </color>
+                            <data>
+                                <circular_buffer_capacity>1000</circular_buffer_capacity>
+                                <time_frame_length>10</time_frame_length>
+                                <type>3</type>
+                            </data>
+                            <style>
+                                <lines_interpolate>false</lines_interpolate>
+                                <pen_style>1</pen_style>
+                                <pen_width>1</pen_width>
+                                <render_antialias>false</render_antialias>
+                                <steps_invert>false</steps_invert>
+                                <sticks_baseline>0</sticks_baseline>
+                                <sticks_orientation>2</sticks_orientation>
+                                <type>0</type>
+                            </style>
+                            <subscriber_queue_size>100</subscriber_queue_size>
+                            <title>ANYmal</title>
+                        </curve_6>
                     </curves>
                     <legend>
                         <visible>true</visible>
@@ -646,11 +799,11 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu_debug</topic>
-                                    <type>ap20_driver_ros/ImuDebug</type>
+                                    <topic>/boxi/ap20/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
                                 </x_axis>
                                 <y_axis>
-                                    <field>imu/angular_velocity/z</field>
+                                    <field>angular_velocity/x</field>
                                     <field_type>0</field_type>
                                     <scale>
                                         <absolute_maximum>1000</absolute_maximum>
@@ -659,8 +812,8 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/imu_debug</topic>
-                                    <type>ap20_driver_ros/ImuDebug</type>
+                                    <topic>/boxi/ap20/imu</topic>
+                                    <type>sensor_msgs/Imu</type>
                                 </y_axis>
                             </axes>
                             <color>
@@ -683,14 +836,14 @@
                                 <type>0</type>
                             </style>
                             <subscriber_queue_size>100</subscriber_queue_size>
-                            <title>IMU Data</title>
+                            <title>AP20 IMU Angular</title>
                         </curve_0>
                     </curves>
                     <legend>
                         <visible>true</visible>
                     </legend>
                     <plot_rate>30</plot_rate>
-                    <title>AP20 Position</title>
+                    <title>IMU Measurments of Leica Totalstation MS60 via AP20 (indicates bluetooth connection)</title>
                 </column_0>
             </row_2>
             <row_3>
@@ -722,11 +875,11 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/position_debug</topic>
-                                    <type>ap20_driver_ros/PositionDebug</type>
+                                    <topic>/boxi/ap20/prism_position</topic>
+                                    <type>geometry_msgs/PointStamped</type>
                                 </x_axis>
                                 <y_axis>
-                                    <field>position/point/x</field>
+                                    <field>point/z</field>
                                     <field_type>0</field_type>
                                     <scale>
                                         <absolute_maximum>1000</absolute_maximum>
@@ -735,8 +888,8 @@
                                         <relative_minimum>-1000</relative_minimum>
                                         <type>0</type>
                                     </scale>
-                                    <topic>/gt_box/ap20/position_debug</topic>
-                                    <type>ap20_driver_ros/PositionDebug</type>
+                                    <topic>/boxi/ap20/prism_position</topic>
+                                    <type>geometry_msgs/PointStamped</type>
                                 </y_axis>
                             </axes>
                             <color>
@@ -751,7 +904,7 @@
                             <style>
                                 <lines_interpolate>false</lines_interpolate>
                                 <pen_style>1</pen_style>
-                                <pen_width>1</pen_width>
+                                <pen_width>2</pen_width>
                                 <render_antialias>false</render_antialias>
                                 <steps_invert>false</steps_invert>
                                 <sticks_baseline>0</sticks_baseline>
@@ -759,14 +912,14 @@
                                 <type>0</type>
                             </style>
                             <subscriber_queue_size>100</subscriber_queue_size>
-                            <title>Position</title>
+                            <title>Position [Z]</title>
                         </curve_0>
                     </curves>
                     <legend>
                         <visible>true</visible>
                     </legend>
                     <plot_rate>30</plot_rate>
-                    <title>AP20 Position</title>
+                    <title>Position Measurment of Leica Totalstation MS60 via AP20 (indicates line-of-sight)</title>
                 </column_0>
             </row_3>
         </plots>

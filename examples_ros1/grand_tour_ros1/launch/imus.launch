@@ -1,0 +1,9 @@
+<launch>
+    <arg name="box_namespace" default="gt_box" />
+    <group ns="grand_tour">
+        <node
+            pkg="rqt_multiplot" type="rqt_multiplot" name="multiplot"
+            args="--multiplot-config $(find grand_tour_ros1)/cfg/rqt_multiplot_imus.xml --multiplot-run-all"
+            output="screen" />
+    </group>
+</launch>
