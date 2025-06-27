@@ -12,7 +12,7 @@
   <a href="#hugging-face-instructions">Hugging Face</a> •
   <a href="#ros1-instructions">ROS1</a> •
   <a href="#contributing">Contributing</a>  •
-  <a href="#citing">Citing</a>
+  <a href="#citation">Citation</a>
 </p>
 
 ## References
@@ -152,7 +152,7 @@ We're organizing a workshop at ICRA 2026 in Vienna and are currently looking for
 Let’s build this together — your input matters!
 
 
-## Citing
+## Citation
 
 ```bibtex
 @INPROCEEDINGS{Frey-Tuna-Fu-RSS-25,
@@ -163,15 +163,3 @@ Let’s build this together — your input matters!
 }
 ```
 *shared first authorship: Frey, Tuna, Fu.
-
-```bibtex
-@INPROCEEDINGS{Tuna-Frey-IJRR-25,
-    AUTHOR    = {Jonas Frey AND Turcan Tuna AND Lanke Frank Tarimo Fu AND Cedric Weibel AND Katharine Patterson AND Benjamin Krummenacher AND Matthias Müller AND Julian Nubert AND Maurice Fallon AND Cesar Cadena AND Marco Hutter},
-    TITLE     = {{Boxi: Design Decisions in the Context of Algorithmic Performance for Robotics}},
-    BOOKTITLE = {Proceedings of Robotics: Science and Systems},
-    YEAR      = {2025},
-    ADDRESS   = {Los Angeles, United States},
-    MONTH     = {July}
-}
-```
-*shared first authorship: Frey, Tuna.
