@@ -155,11 +155,13 @@ Let’s build this together — your input matters!
 ## Citation
 
 ```bibtex
-@INPROCEEDINGS{Frey-Tuna-Fu-RSS-25,
-    AUTHOR    = {Jonas Frey AND Turcan Tuna AND Lanke Frank Tarimo Fu AND Katharine Patterson AND Tinao Xu AND Maurice Fallon AND Cesar Cadena AND Marco Hutter},
-    TITLE     = {{{The GrandTour Dataset: A Legged Robotics Dataset in the Wild}},
-    BOOKTITLE = {in preperation for IJRR},
+@INPROCEEDINGS{Tuna-Frey-RSS-25,
+    AUTHOR    = {Jonas Frey AND Turcan Tuna AND Lanke Frank Tarimo Fu AND Cedric Weibel AND Katharine Patterson AND Benjamin Krummenacher AND Matthias Müller AND Julian Nubert AND Maurice Fallon AND Cesar Cadena AND Marco Hutter},
+    TITLE     = {{Boxi: Design Decisions in the Context of Algorithmic Performance for Robotics}},
+    BOOKTITLE = {Proceedings of Robotics: Science and Systems},
     YEAR      = {2025},
+    ADDRESS   = {Los Angeles, United States},
+    MONTH     = {June}
 }
 ```
 *shared first authorship: Frey, Tuna, Fu.
