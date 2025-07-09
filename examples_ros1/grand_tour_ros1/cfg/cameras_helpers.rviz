@@ -377,8 +377,7 @@ Visualization Manager:
                         LF_KFE_drive:
                           LF_SHANK:
                             LF_shank_fixed:
-                              LF_FOOT:
-                                {}
+                              LF_FOOT: {}
           LH_HAA_drive:
             LH_HIP:
               LH_hip_fixed:
@@ -389,8 +388,7 @@ Visualization Manager:
                         LH_KFE_drive:
                           LH_SHANK:
                             LH_shank_fixed:
-                              LH_FOOT:
-                                {}
+                              LH_FOOT: {}
           RF_HAA_drive:
             RF_HIP:
               RF_hip_fixed:
@@ -401,8 +399,7 @@ Visualization Manager:
                         RF_KFE_drive:
                           RF_SHANK:
                             RF_shank_fixed:
-                              RF_FOOT:
-                                {}
+                              RF_FOOT: {}
           RH_HAA_drive:
             RH_HIP:
               RH_hip_fixed:
@@ -413,173 +410,107 @@ Visualization Manager:
                         RH_KFE_drive:
                           RH_SHANK:
                             RH_shank_fixed:
-                              RH_FOOT:
-                                {}
-          anymal_imu:
-            {}
-          base_inertia:
-            {}
-          battery:
-            {}
-          body_top:
-            {}
-          bottom_shell:
-            {}
+                              RH_FOOT: {}
+          anymal_imu: {}
+          base_inertia: {}
+          battery: {}
+          body_top: {}
+          bottom_shell: {}
           box_base:
-            adis16475_imu:
-              {}
+            adis16475_imu: {}
             alphasense_base:
-              alphasense_front_center:
-                {}
-              alphasense_front_left:
-                {}
-              alphasense_front_right:
-                {}
-              alphasense_left:
-                {}
-              alphasense_right:
-                {}
-              cam1_sensor_frame:
-                {}
-              cam2_sensor_frame:
-                {}
-              cam3_sensor_frame:
-                {}
-              cam4_sensor_frame:
-                {}
-              cam5_sensor_frame:
-                {}
-            alphasense_imu:
-              {}
-            ap20_imu:
-              {}
-            box_base_model:
-              {}
+              alphasense_front_center: {}
+              alphasense_front_left: {}
+              alphasense_front_right: {}
+              alphasense_left: {}
+              alphasense_right: {}
+              cam1_sensor_frame: {}
+              cam2_sensor_frame: {}
+              cam3_sensor_frame: {}
+              cam4_sensor_frame: {}
+              cam5_sensor_frame: {}
+            alphasense_imu: {}
+            ap20_imu: {}
+            box_base_model: {}
             cpt7_imu:
-              cpt7_antenna_back:
-                {}
-              cpt7_antenna_front:
-                {}
-              enu_origin:
-                {}
+              cpt7_antenna_back: {}
+              cpt7_antenna_front: {}
+              enu_origin: {}
             hdr_base:
-              hdr_front:
-                {}
-              hdr_left:
-                {}
-              hdr_right:
-                {}
+              hdr_front: {}
+              hdr_left: {}
+              hdr_right: {}
             hesai_lidar:
-              dlio_map:
-                {}
-              dlio_odom:
-                {}
-              hesai_model:
-                {}
-            imu_sensor_frame:
-              {}
+              dlio_map: {}
+              dlio_odom: {}
+              hesai_model: {}
+            imu_sensor_frame: {}
             livox_lidar:
-              livox_imu:
-                {}
-              livox_model:
-                {}
-            prism:
-              {}
-            prism_model:
-              {}
-            stim320_imu:
-              {}
+              livox_imu: {}
+              livox_model: {}
+            prism: {}
+            prism_model: {}
+            stim320_imu: {}
             zed2i_base:
-              zed2i_imu:
-                {}
-              zed2i_left:
-                {}
-              zed2i_right:
-                {}
+              zed2i_imu: {}
+              zed2i_left: {}
+              zed2i_right: {}
             zed_base_link:
               zed2i_base_link:
                 zed2i_camera_center:
                   zed2i_left_camera_frame:
-                    zed2i_imu_link:
-                      {}
+                    zed2i_imu_link: {}
                     zed2i_left_camera_optical_frame:
                       zed2i_right_camera_optical_frame:
-                        zed2i_right_camera_frame:
-                          {}
-          cpt7_antenna_back_model:
-            {}
+                        zed2i_right_camera_frame: {}
+          cpt7_antenna_back_model: {}
           depth_camera_left_camera:
             depth_camera_left_camera_parent:
               depth_camera_left_depth_frame:
-                depth_camera_left:
-                  {}
-                depth_camera_left_depth_optical_frame:
-                  {}
+                depth_camera_left: {}
+                depth_camera_left_depth_optical_frame: {}
           depth_camera_right_camera:
             depth_camera_right_camera_parent:
               depth_camera_right_depth_frame:
-                depth_camera_right:
-                  {}
-                depth_camera_right_depth_optical_frame:
-                  {}
-          docking_socket:
-            {}
+                depth_camera_right: {}
+                depth_camera_right_depth_optical_frame: {}
+          docking_socket: {}
           face_front:
             depth_camera_front_lower_camera:
               depth_camera_front_lower_camera_parent:
                 depth_camera_front_lower_depth_frame:
-                  depth_camera_front_lower:
-                    {}
-                  depth_camera_front_lower_depth_optical_frame:
-                    {}
+                  depth_camera_front_lower: {}
+                  depth_camera_front_lower_depth_optical_frame: {}
             depth_camera_front_upper_camera:
               depth_camera_front_upper_camera_parent:
                 depth_camera_front_upper_depth_frame:
-                  depth_camera_front_upper:
-                    {}
-                  depth_camera_front_upper_depth_optical_frame:
-                    {}
-            face_shell_front:
-              {}
+                  depth_camera_front_upper: {}
+                  depth_camera_front_upper_depth_optical_frame: {}
+            face_shell_front: {}
             wide_angle_camera_front_camera:
-              wide_angle_camera_front_camera_parent:
-                {}
+              wide_angle_camera_front_camera_parent: {}
           face_rear:
             depth_camera_rear_lower_camera:
               depth_camera_rear_lower_camera_parent:
                 depth_camera_rear_lower_depth_frame:
-                  depth_camera_rear_lower:
-                    {}
-                  depth_camera_rear_lower_depth_optical_frame:
-                    {}
+                  depth_camera_rear_lower: {}
+                  depth_camera_rear_lower_depth_optical_frame: {}
             depth_camera_rear_upper_camera:
               depth_camera_rear_upper_camera_parent:
                 depth_camera_rear_upper_depth_frame:
-                  depth_camera_rear_upper:
-                    {}
-                  depth_camera_rear_upper_depth_optical_frame:
-                    {}
-            face_shell_rear:
-              {}
+                  depth_camera_rear_upper: {}
+                  depth_camera_rear_upper_depth_optical_frame: {}
+            face_shell_rear: {}
             wide_angle_camera_rear_camera:
-              wide_angle_camera_rear_camera_parent:
-                {}
-          hatch_shell:
-            {}
-          hbc_receiver:
-            {}
-          imu_link:
-            {}
-          lidar:
-            {}
-          lidar_parent:
-            {}
-          odom:
-            {}
-          top_shell:
-            {}
-          velodyne_lidar:
-            {}
+              wide_angle_camera_rear_camera_parent: {}
+          hatch_shell: {}
+          hbc_receiver: {}
+          imu_link: {}
+          lidar: {}
+          lidar_parent: {}
+          odom: {}
+          top_shell: {}
+          velodyne_lidar: {}
       Update Interval: 0
       Value: true
     - Alpha: 1
