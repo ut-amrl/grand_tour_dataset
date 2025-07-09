@@ -66,6 +66,43 @@ List of examples:
 
 ## ROS1 Instructions
 
+### Downloading Rosbags
+
+To access and download the GrandTour dataset rosbags, please follow these steps:
+
+#### 1. Register for Access
+
+- **Register here:** [Google Form Registration](https://forms.gle/2qJkGYJ6oxnBvdNq9)
+
+#### 2. Download Rosbags
+
+**Option 1 – Command Line Interface (Recommended):**
+
+Install the CLI tool and log in:
+```bash
+pip3 install kleinkram
+klein login
+```
+- You can now explore the CLI using tab-completion or the `--help` flag.
+
+**Download multiple files via Python scripting:**
+```bash
+python3 examples_ros1/grand_tour_ros1/scripts/kleinkram_cli_example.py
+```
+
+**Directly convert rosbags to PNG images (requires ROS1 installation):**
+```bash
+python3 examples_ros1/grand_tour_ros1/scripts/kleinkram_extract_images.py
+```
+
+---
+
+**Option 2 – Web Interface:**
+
+- Use the [GrandTour Dataset Web Interface](https://datasets.leggedrobotics.com/#/) to browse and download data directly.
+
+---
+
 ### Create Folders
 
 ```shell
