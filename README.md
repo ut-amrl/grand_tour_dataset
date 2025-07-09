@@ -11,7 +11,7 @@
   <a href="#hugging-face-instructions">Hugging Face</a> •
   <a href="#ros1-instructions">ROS1</a> •
   <a href="#contributing">Contributing</a>  •
-  <a href="#citing">Citing</a>
+  <a href="#citation">Citation</a>
 </p>
 
 ## References
@@ -198,7 +198,8 @@ We're organizing a workshop at ICRA 2026 in Vienna and are currently looking for
 
 Let’s build this together — your input matters!
 
-## Citing
+
+## Citation
 
 ```bibtex
 @INPROCEEDINGS{Tuna-Frey-Fu-RSS-25,
