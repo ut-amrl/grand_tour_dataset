@@ -22,7 +22,7 @@ More instructions can be found on the [official webpage](https://grand-tour.legg
 - Dataset Explorer
 - Benchmarks
 
-## Hugging Face Instructions
+## Hugging Face Instructions (Data comeing soon)
 
 You can find Jupyter Notebooks with full instructions in the [`examples_hugging_face`](./examples_hugging_face).  
 Requirements: Python>=3.11
