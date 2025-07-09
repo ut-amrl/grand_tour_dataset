@@ -87,12 +87,12 @@ klein login
 
 **Download multiple files via Python scripting:**
 ```bash
-python3 examples_ros1/grand_tour_ros1/scripts/kleinkram_cli_example.py
+python3 examples_kleinkram/kleinkram_cli_example.py
 ```
 
 **Directly convert rosbags to PNG images (requires ROS1 installation):**
 ```bash
-python3 examples_ros1/grand_tour_ros1/scripts/kleinkram_extract_images.py
+python3 examples_kleinkram/kleinkram_extract_images.py
 ```
 
 ---
