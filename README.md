@@ -29,7 +29,7 @@ Requirements: Python>=3.11
 Examples Tested with: zarr==3.0.7
 
 <details>
-<summary>### Installation Instructions (UV with no preinstalled Python 3.11)</summary>
+<summary> Installation Instructions (UV with no preinstalled Python 3.11)</summary>
 
 #### Step 1: Install `uv` for Dependency Management
 
