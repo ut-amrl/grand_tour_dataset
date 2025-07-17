@@ -22,7 +22,7 @@ More instructions can be found on the [official webpage](https://grand-tour.legg
 - Dataset Explorer
 - Benchmarks
 
-## Example Projects
+## Projects using the GrandTour Dataset
 
 | Project                                                                                                  | Preview                                                                                           |
 | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
