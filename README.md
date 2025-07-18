@@ -111,6 +111,7 @@ mkdir -p ~/git
 ```
 
 ### Clone and Link Submodules
+> **⚠️ Note:** The `grand_tour_box` repository is currently private. We are actively working on making it public.
 
 ```shell
 # Cloning the repository
