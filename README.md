@@ -22,6 +22,16 @@ More instructions can be found on the [official webpage](https://grand-tour.legg
 - Dataset Explorer
 - Benchmarks
 
+## Projects using the GrandTour Dataset
+
+| Project                                                                                                  | Preview                                                                                           |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [**Physical Terrain Parameters Learning**](https://github.com/leggedrobotics/physical_terrain_parameter_learning) <br> *Learning simulation paramters from RGB and proprioception.*   | <img src="assets/projects/chen2024.png" height="64"/> |
+| [**Fordward Dynamics Model Learning**](https://github.com/leggedrobotics/fdm) <br> *Learning dynamics model.* | <img src="assets/projects/roth2025.png" height="64"/> |
+| [**Holistic Fusion**](https://github.com/leggedrobotics/holistic_fusion) <br> *Holistic State Estimation.*              |  <img src="assets/projects/nubert2025.png" height="64"/>|
+| [**RESPLE: Recursive Spline LIO**](https://asig-x.github.io/resple_web/) <br> *SoTA LiDAR Inertial Odometry.*              | <img src="assets/projects/cao2025.png" height="64"/> |
+
+
 ## Hugging Face Instructions (Data comeing soon)
 
 You can find Jupyter Notebooks with full instructions in the [`examples_hugging_face`](./examples_hugging_face).  
@@ -79,18 +89,22 @@ To access and download the GrandTour dataset rosbags, please follow these steps:
 **Option 1 – Command Line Interface (Recommended):**
 
 Install the CLI tool and log in:
+
 ```bash
 pip3 install kleinkram
 klein login
 ```
+
 - You can now explore the CLI using tab-completion or the `--help` flag.
 
 **Download multiple files via Python scripting:**
+
 ```bash
 python3 examples_kleinkram/kleinkram_cli_example.py
 ```
 
 **Directly convert rosbags to PNG images (requires ROS1 installation):**
+
 ```bash
 python3 examples_kleinkram/kleinkram_extract_images.py
 ```
@@ -236,7 +250,6 @@ We're organizing a workshop at ICRA 2026 in Vienna and are currently looking for
 
 Let’s build this together — your input matters!
 
-
 ## Citation
 
 ```bibtex
@@ -249,4 +262,5 @@ Let’s build this together — your input matters!
     MONTH     = {June}
 }
 ```
-*shared first authorship: Frey, Tuna, Fu.
+
+\*shared first authorship: Frey, Tuna, Fu.
