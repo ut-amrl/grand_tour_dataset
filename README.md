@@ -61,8 +61,8 @@ jupyter notebook
 
 List of examples:
 
-- [Accessing GrandTour Data](./examples_hugging_face/[0]_Accessing_GrandTour_Data.ipynb)
-- [Exploring GrandTour Data](./examples_hugging_face/[1]_Exploring_GrandTour_Data.ipynb)
+- [Accessing/Downloading GrandTour Data](./examples_hugging_face/access.ipynb)
+- [Exploring GrandTour Data](./examples_hugging_face/explore.ipynb)
 
 ## ROS1 Instructions
 
