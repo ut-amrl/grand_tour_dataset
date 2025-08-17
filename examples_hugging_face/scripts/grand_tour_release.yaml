@@ -1,0 +1,45 @@
+skip_start_seconds: 0
+skip_end_seconds: 0
+
+create_mask_based_on_semantics: True
+create_depth_based_on_lidar: True
+
+lidars:
+  - tag: livox_points_undistorted
+    accumulate_scans: 3
+  - tag: hesai_points_undistorted
+    accumulate_scans: 1
+
+cameras:
+  - tag: hdr_front
+    blur_threshold: 0
+    distance_threshold: 0.25
+    hz: 2
+    max_images: 50
+
+  - tag: hdr_left
+    blur_threshold: 0
+    distance_threshold: 0.25
+    hz: 2
+    max_images: 50
+
+  - tag: hdr_right
+    blur_threshold: 0
+    distance_threshold: 0.25
+    hz: 2
+    max_images: 50
+
+  # - tag: zed2i_right
+  #   blur_threshold: 125
+  #   distance_threshold: 0.25
+  #   hz: 2
+  #   max_images: 100
+  #   # use_depth_image: False
+  #   # depth_image_topic: zed2i_depth
+  #   # offset_in_ms: 45
+  # - tag: zed2i_left
+  #   offset_in_ms: 45
+  #   blur_threshold: 125
+  #   distance_threshold: 0.25
+  #   hz: 2
+  #   max_images: 100

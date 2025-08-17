@@ -8,8 +8,7 @@ from transformers import Mask2FormerImageProcessor, Mask2FormerForUniversalSegme
 from PIL import Image
 import zarr
 from tqdm import tqdm
-from scipy.spatial.transform import Rotation as R, Slerp
-from scipy.interpolate import interp1d
+from zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
 
 ROS_CAMERA_TO_OPENCV_CAMERA = np.array([[0, -1, 0, 0], [0, 0, -1, 0], [1, 0, 0, 0], [0, 0, 0, 1]], dtype=np.float32)
 
@@ -22,109 +21,6 @@ def ros_to_gl_transform(transform_ros):
 def gl_to_ros_transform(transform_gl):
     transform_ros = transform_gl @ np.linalg.inv(ROS_CAMERA_TO_OPENCV_CAMERA)
     return transform_ros
-
-
-def pq_to_se3(p, q):
-    se3 = np.eye(4, dtype=np.float32)
-    try:
-        se3[:3, :3] = R.from_quat([q["x"], q["y"], q["z"], q["w"]]).as_matrix()
-        se3[:3, 3] = [p["x"], p["y"], p["z"]]
-    except:
-        se3[:3, :3] = R.from_quat(q).as_matrix()
-        se3[:3, 3] = p
-    return se3
-
-
-def attrs_to_se3(attrs):
-    return pq_to_se3(attrs["transform"]["translation"], attrs["transform"]["rotation"])
-
-
-def transform_points(points, transform_matrix):
-    points_homo = np.hstack([points, np.ones((points.shape[0], 1))])
-    return (transform_matrix @ points_homo.T).T[:, :3]
-
-
-class FastGetClosestOdomToBaseTf:
-    def __init__(self, odom_key, mission_root):
-        self.odom_key = odom_key
-        self.mission_root = mission_root
-        odom = mission_root[odom_key]
-        self.odom = mission_root[odom_key]
-        self.timestamps = odom["timestamp"][:]
-        self.pose_pos = odom["pose_pos"][:]
-        self.pose_orien = odom["pose_orien"][:]
-
-    def __call__(self, timestamp: float, interpolate_leg_odometry: bool = False) -> np.ndarray:
-        assert interpolate_leg_odometry is False, "Interpolation not implemented yet"
-        idx = np.argmin(np.abs(self.timestamps - timestamp))
-
-        # we write transforms as transforming from source_to_target
-        # p_lidar = p_source @ source_to_lidar
-        # p_base = p_source @ source_to_lidar @ lidar_to_base
-
-        if idx == 0 or idx == len(self.timestamps) - 1 or self.timestamps[idx] == timestamp:
-            print(f"Requested timestamp {timestamp} is at border of available times or exact match.")
-            p = self.pose_pos[idx]
-            q = self.pose_orien[idx]
-            odom__base = pq_to_se3(p, q)
-        else:
-            # Normal case: determine which two points to interpolate between
-            if timestamp <= self.timestamps[idx]:
-                # Interpolate between previous and current
-                idx1, idx2 = idx - 1, idx
-            else:
-                # Interpolate between current and next
-                idx1, idx2 = idx, idx + 1
-
-            # Get the two poses for interpolation
-            t1, t2 = self.timestamps[idx1], self.timestamps[idx2]
-            pos1, pos2 = self.pose_pos[idx1], self.pose_pos[idx2]
-            quat1, quat2 = self.pose_orien[idx1], self.pose_orien[idx2]
-
-            import matplotlib.pyplot as plt
-
-            path = np.array(self.pose_pos[:, :])
-            fig = plt.figure()
-            ax = fig.add_subplot(111, projection="3d")
-            ax.plot(path[:, 0], path[:, 1], path[:, 2], color="blue", linewidth=2)
-
-            ax.set_xlabel("X")
-            ax.set_ylabel("Y")
-            ax.set_zlabel("Z")
-            ax.set_title("3D Path")
-
-            plt.show()
-            # odom__base = pq_to_se3(pos1, quat1)
-
-            # Create timestamps array for interpolation
-            timestamps = np.array([t1, t2])
-            target_time = np.array([timestamp])
-
-            # Linear interpolation for position
-            positions = np.array([pos1, pos2])
-            translation_interpolator = interp1d(
-                timestamps, positions, kind="linear", axis=0, bounds_error=False, fill_value=(pos1, pos2)
-            )
-            interpolated_position = translation_interpolator(target_time)[0]
-
-            # SLERP interpolation for rotation
-            rotations = R.from_quat([quat1, quat2])
-            slerp_interpolator = Slerp(timestamps, rotations)
-            interpolated_rotation = slerp_interpolator(target_time)
-            interpolated_quat = interpolated_rotation.as_quat()[0]
-            odom__base = pq_to_se3(interpolated_position, interpolated_quat)
-
-        if self.odom_key == "dlio_map_odometry":
-            dlio_world__hesai = odom__base
-            box_base__base = pq_to_se3(
-                self.mission_root["tf"].attrs["tf"]["box_base"]["translation"],
-                self.mission_root["tf"].attrs["tf"]["box_base"]["rotation"],
-            )
-            box_base__hesai = attrs_to_se3(self.mission_root["hesai_points_undistorted"].attrs)
-
-            odom__base = box_base__base @ np.linalg.inv(box_base__hesai) @ dlio_world__hesai
-
-        return odom__base
 
 
 class Masking:
@@ -184,19 +80,7 @@ class Depth:
             l_cfg["points"] = self.nc.mission_root[l_cfg["tag"]]["points"][:]
             l_cfg["valid"] = self.nc.mission_root[l_cfg["tag"]]["valid"][:]
             l_cfg["timestamp"] = self.nc.mission_root[l_cfg["tag"]]["timestamp"][:]
-            l_cfg["lidar__box_base"] = attrs_to_se3(self.nc.mission_root[l_cfg["tag"]].attrs)  # target
-
-            # if l_cfg["tag"] == "livox_points_undistorted":
-            #     box_base__base = pq_to_se3(
-            #         self.nc.mission_root["tf"].attrs["tf"]["box_base"]["translation"],
-            #         self.nc.mission_root["tf"].attrs["tf"]["box_base"]["rotation"],
-            #     )
-            #     l_cfg["lidar__box_base"] @= box_base__base
-
-            # TF Lookup naming (from lidar to camera transform)
-            # lidar = target frame
-            # box_base = source frame
-            # target_frame to source_frame so e.g. Lidar points tf_lookup(target=cameras, source=lidar)
+            l_cfg["lidar_frame"] = self.nc.mission_root[l_cfg["tag"]].attrs["frame_id"]
 
     def __call__(self, *args, **kwds):
         cv_image, image_path, invalid_mask, frame, timestamp, camera_tag = args
@@ -257,10 +141,8 @@ class Depth:
         return depth_image
 
     def get_n_lidar_points_in_camera_frame(self, timestamp, camera_tag):
-        odom__base__t_cam = self.nc.tf_lookup(timestamp)
-        cam__box_base = attrs_to_se3(self.nc.mission_root[camera_tag].attrs)
-
-        box_base__cam = np.linalg.inv(cam__box_base)
+        T_base_to_odom__t_camera = self.nc.tf_lookup(timestamp, interpolate=True, parent="base")
+        camera_frame = self.nc.mission_root[camera_tag].attrs["frame_id"]
 
         points = []
         for l_cfg in self.lidar_cfg:
@@ -269,20 +151,21 @@ class Depth:
 
             for i in indices:
                 i = int(i)
+                t_lidar = l_cfg["timestamp"][i]
                 points_in_lidar = l_cfg["points"][i, : int(l_cfg["valid"][i, 0])]
 
-                t_lidar = l_cfg["timestamp"][i]
-                odom__base__t_lidar = self.nc.tf_lookup(t_lidar)
-                t_lidar__t_cam = np.linalg.inv(odom__base__t_lidar) @ odom__base__t_cam
+                # Relative motion from different timestamps
+                T_base_to_odom__t_lidar = self.nc.tf_lookup(t_lidar, interpolate=True, parent="base")
+                T_t_lidar_to_t_cam = np.linalg.inv(T_base_to_odom__t_lidar) @ T_base_to_odom__t_camera
 
-                cam__lidar = np.linalg.inv(l_cfg["lidar__box_base"] @ box_base__cam) @ np.linalg.inv(t_lidar__t_cam)
+                T_lidar_to_cam = get_static_transform(self.nc.mission_root, l_cfg["lidar_frame"], camera_frame)
+                T_lidar_to_cam = T_t_lidar_to_t_cam @ T_lidar_to_cam
 
                 points_in_cam = transform_points(
                     points_in_lidar,
-                    cam__lidar,
+                    inv(T_lidar_to_cam),
                 )
                 points.append(points_in_cam)
-                print(l_cfg["tag"], l_cfg["lidar__box_base"])
 
         return points
 
@@ -351,7 +234,7 @@ class NerfstudioConverter:
         self.mission_folder = mission_folder
 
         # anymal_state_odometry dlio_map_odometry
-        self.tf_lookup = FastGetClosestOdomToBaseTf("dlio_map_odometry", mission_root)
+        self.tf_lookup = FastTfLookup("dlio_map_odometry", mission_root, parent="hesai_lidar", child="dlio_map")
 
         self.output_folder = output_folder / f"{mission_name}_nerfstudio"
         self.output_folder.mkdir(parents=True, exist_ok=True)
@@ -410,11 +293,6 @@ class NerfstudioConverter:
         return undistorted_image
 
     def run(self):
-        box_base__base = pq_to_se3(
-            self.mission_root["tf"].attrs["tf"]["box_base"]["translation"],
-            self.mission_root["tf"].attrs["tf"]["box_base"]["rotation"],
-        )
-
         frames_data = {"camera_model": "OPENCV", "frames": []}
 
         for camera in self.config["cameras"]:
@@ -430,15 +308,17 @@ class NerfstudioConverter:
                     continue
                 last_t = timestamp
 
-                odom__base__t_camera = self.tf_lookup(timestamp)
+                try:
+                    T_cam_to_odom__t_camera = self.tf_lookup(timestamp, interpolate=True, parent=camera_tag)
+                except Exception as e:
+                    continue
+
                 if (
                     last_pos is not None
-                    and np.linalg.norm(last_pos - odom__base__t_camera[:2, 3]) < camera["distance_threshold"]
+                    and np.linalg.norm(last_pos - T_cam_to_odom__t_camera[:2, 3]) < camera["distance_threshold"]
                 ):
                     continue
-                last_pos = odom__base__t_camera[:2, 3]
-                box_base__cam = attrs_to_se3(data.attrs)
-                odom__cam__t_camera = box_base__cam @ np.linalg.inv(box_base__base) @ odom__base__t_camera
+                last_pos = T_cam_to_odom__t_camera[:2, 3]
 
                 cv_image = cv2.imread(self.mission_folder / "images" / camera_tag / f"{i:06d}.jpeg")
 
@@ -460,7 +340,7 @@ class NerfstudioConverter:
                 cv2.imwrite(str(image_path), cv_image)
 
                 # Convert to OpenGL convention
-                odom__cam__t_camera_gl = ros_to_gl_transform(odom__cam__t_camera)
+                odom__cam__t_camera_gl = ros_to_gl_transform(T_cam_to_odom__t_camera)
 
                 timestamp = timestamps[i]
                 secs = int(timestamp)
@@ -497,9 +377,9 @@ class NerfstudioConverter:
 
 
 if __name__ == "__main__":
-    CONFIG_FILE = Path("~/git/gauss-gym/gaussian_splatting/grand_tour_release.yaml").expanduser()
+    CONFIG_FILE = Path("~/git/grand_tour_dataset/examples_hugging_face/scripts/grand_tour_release.yaml").expanduser()
     MISSION_FOLDER = Path("~/grand_tour_dataset/2024-11-04-10-57-34").expanduser()
-    OUTPUT_FOLDER = Path("~/git/gauss-gym/gaussian_splatting/data").expanduser()
+    OUTPUT_FOLDER = Path("~/git/grand_tour_dataset/examples_hugging_face/data").expanduser()
 
     with open(CONFIG_FILE, "r") as f:
         config = yaml.safe_load(f)

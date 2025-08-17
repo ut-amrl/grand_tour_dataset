@@ -124,6 +124,65 @@ def interpolate_pose_at_timestamp(timestamp, timestamps, pose_pos, pose_orien):
     return pq_to_se3(interp_pos, interp_quat)
 
 
+class FastTfLookup:
+    def __init__(self, odom_key, mission_root, parent, child):
+        self.odom_key = odom_key
+        self.mission_root = mission_root
+        odom = mission_root[odom_key]
+        self.odom = mission_root[odom_key]
+        self.timestamps = odom["timestamp"][:]
+        self.pose_pos = odom["pose_pos"][:]
+        self.pose_orien = odom["pose_orien"][:]
+        self.parent = parent
+        self.child = child
+
+    def __call__(self, timestamp: float, interpolate: bool = True, parent=None, child=None) -> np.ndarray:
+        if self.timestamps[0] > timestamp or self.timestamps[-1] < timestamp:
+            raise ValueError("Timestamp outside interpolation range.")
+
+        idx = np.searchsorted(self.timestamps, timestamp)
+
+        if not interpolate:
+            T_parent_to_child = pq_to_se3(self.pose_pos[idx], self.pose_orien[idx])
+
+        elif self.timestamps[idx] == timestamp:
+            T_parent_to_child = pq_to_se3(self.pose_pos[idx], self.pose_orien[idx])
+        else:
+            idx1, idx2 = idx - 1, idx
+            t1, t2 = self.timestamps[idx1], self.timestamps[idx2]
+
+            # Position (linear)
+            positions = np.vstack([self.pose_pos[idx1], self.pose_pos[idx2]])
+            translation_interpolator = interp1d(
+                [t1, t2], positions, axis=0, kind="linear", bounds_error=False, fill_value="extrapolate"
+            )
+            interp_pos = translation_interpolator(timestamp)
+
+            # Orientation (slerp)
+            rotations = R.from_quat([self.pose_orien[idx1], self.pose_orien[idx2]])
+            slerp = Slerp([t1, t2], rotations)
+            interp_quat = slerp(timestamp).as_quat()
+
+            T_parent_to_child = pq_to_se3(interp_pos, interp_quat)
+
+        return self._transform_output_frames(T_parent_to_child, parent, child)
+
+    def _transform_output_frames(self, T_parent_to_child, parent, child):
+        if child is not None:
+            T_child_to_child_new = get_static_transform(self.mission_root, self.child, child)
+            T_parent_to_child_new = T_parent_to_child @ T_child_to_child_new
+        else:
+            T_parent_to_child_new = T_parent_to_child
+
+        if parent is not None:
+            T_parent_new_to_parent = get_static_transform(self.mission_root, parent, self.parent)
+            T_parent_new_to_child_new = T_parent_new_to_parent @ T_parent_to_child_new
+        else:
+            T_parent_new_to_child_new = T_parent_to_child_new
+
+        return T_parent_new_to_child_new
+
+
 if __name__ == "__main__":
     MISSION_FOLDER = Path("~/grand_tour_dataset/2024-11-04-10-57-34").expanduser()
     mission_root = zarr.open_group(store=MISSION_FOLDER / "data", mode="r")
@@ -165,65 +224,6 @@ if __name__ == "__main__":
     T_dlio_world_to_hesai_lidar_inter = interpolate_pose_at_timestamp(
         desired_timestamp, timestamps, pose_pos, pose_orien
     )
-
-
-class FastTfLookup:
-    def __init__(self, odom_key, mission_root, parent, child):
-        self.odom_key = odom_key
-        self.mission_root = mission_root
-        odom = mission_root[odom_key]
-        self.odom = mission_root[odom_key]
-        self.timestamps = odom["timestamp"][:]
-        self.pose_pos = odom["pose_pos"][:]
-        self.pose_orien = odom["pose_orien"][:]
-        self.parent = parent
-        self.child = child
-
-    def __call__(self, timestamp: float, interpolate: bool = True, parent=None, child=None) -> np.ndarray:
-        if self.timestamps[0] > timestamp or self.timestamps[-1] < timestamp:
-            raise ValueError("Timestamp outside interpolation range.")
-
-        idx = np.searchsorted(self.timestamps, timestamp)
-
-        if not interpolate:
-            T_parent_to_child = pq_to_se3(self.pose_pos[idx], self.pose_orien[idx])
-
-        elif self.timestamps[idx] == timestamp:
-            T_parent_to_child = pq_to_se3(self.pose_pos[idx], self.pose_orien[idx])
-        else:
-            idx1, idx2 = idx - 1, idx
-            t1, t2 = self.timestamps[idx1], self.timestamps[idx2]
-
-            # Position (linear)
-            positions = np.vstack([pose_pos[idx1], pose_pos[idx2]])
-            translation_interpolator = interp1d(
-                [t1, t2], positions, axis=0, kind="linear", bounds_error=False, fill_value="extrapolate"
-            )
-            interp_pos = translation_interpolator(timestamp)
-
-            # Orientation (slerp)
-            rotations = R.from_quat([self.pose_orien[idx1], self.pose_orien[idx2]])
-            slerp = Slerp([t1, t2], rotations)
-            interp_quat = slerp(timestamp).as_quat()
-
-            T_parent_to_child = pq_to_se3(interp_pos, interp_quat)
-
-        return self._transform_output_frames(T_parent_to_child, parent, child)
-
-    def _transform_output_frames(self, T_parent_to_child, parent, child):
-        if child is not None:
-            T_child_to_child_new = get_static_transform(self.mission_root, self.child, child)
-            T_parent_to_child_new = T_parent_to_child @ T_child_to_child_new
-        else:
-            T_parent_to_child_new = T_parent_to_child
-
-        if parent is not None:
-            T_parent_new_to_parent = get_static_transform(self.mission_root, parent, self.parent)
-            T_parent_new_to_child_new = T_parent_new_to_parent @ T_parent_to_child_new
-        else:
-            T_parent_new_to_child_new = T_parent_to_child_new
-
-        return T_parent_new_to_child_new
 
 
 if __name__ == "__main__":
