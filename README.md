@@ -59,10 +59,36 @@ jupyter notebook
 
 </details>
 
-List of examples:
+## 📒 Jupyter Notebook Examples
 
-- [Accessing/Downloading GrandTour Data](./examples_hugging_face/access.ipynb)
-- [Exploring GrandTour Data](./examples_hugging_face/explore.ipynb)
+* [Accessing/Downloading GrandTour Data](./examples_hugging_face/notebooks/access.ipynb)
+  Learn how to authenticate, access, and download GrandTour datasets.
+
+* [Exploring GrandTour Data](./examples_hugging_face/notebooks/explore.ipynb)
+  Explore dataset structure, visualize samples, and understand annotations.
+
+---
+
+## 🐍 Python Scripts
+
+* [zarr\_transforms.py](./examples_hugging_face/scripts/zarr_transforms.py)
+  Demonstrates how to use transforms and provides helper functions for Zarr data.
+
+* [plot\_lidar\_3d.py](./examples_hugging_face/scripts/plot_lidar_3d.py)
+  Visualize LiDAR data in 3D space.
+
+* [project\_lidar\_on\_image.py](./examples_hugging_face/scripts/project_lidar_on_image.py)
+  Project LiDAR points onto camera images, accounting for camera distortion and relative motion.
+
+* [dynamic\_points\_filtering\_using\_images.py](./examples_hugging_face/scripts/dynamic_points_filtering_using_images.py)
+  Removes dynamic objects from LiDAR point clouds using image segmentation and saves results in Zarr format.
+
+* [generate\_elevation\_maps.py](./examples_hugging_face/scripts/generate_elevation_maps.py)
+  Generates integrated elevation maps from LiDAR and depth cameras.
+
+* [nerfstudio\_convert.py](./examples_hugging_face/scripts/nerfstudio_convert.py)
+  Converts datasets into **nerfstudio** format for training Gaussian Splatting models.
+
 
 ## ROS1 Instructions
 
