@@ -16,6 +16,7 @@ topics = [
     "hdr_right",
     "livox_points_undistorted",
     "hesai_points_undistorted",
+    "velodyne_points_undistorted",
     "anymal_state_odometry",
     "tf",
     "dlio_map_odometry",
