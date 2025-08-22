@@ -377,7 +377,7 @@ class NerfstudioConverter:
 
 
 if __name__ == "__main__":
-    CONFIG_FILE = Path("~/git/grand_tour_dataset/examples_hugging_face/scripts/grand_tour_release.yaml").expanduser()
+    CONFIG_FILE = Path("~/git/grand_tour_dataset/examples_hugging_face/grand_tour_release.yaml").expanduser()
     MISSION_FOLDER = Path("~/grand_tour_dataset/2024-11-04-10-57-34").expanduser()
     OUTPUT_FOLDER = Path("~/git/grand_tour_dataset/examples_hugging_face/data").expanduser()
 
