@@ -11,12 +11,12 @@ version = "0.1.0"
 description = "GrandTour HuggingFace Integration"
 authors = []
 readme = "README.md"
-requires-python = "==3.10.*"
+requires-python = "==3.11.*"
 dependencies = [
     "open3d",
     "trimesh",
     "notebook",
-    "zarr",
+    "zarr==3.0.7",
     "matplotlib",
     "plotly",
     "rich",
