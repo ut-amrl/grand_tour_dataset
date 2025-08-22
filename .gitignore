@@ -32,3 +32,4 @@ examples_hugging_face/.venv/*
 *checkpoint.ipynb
 examples_hugging_face/data/*
 *.egg-info*
+examples_hugging_face/debug/*

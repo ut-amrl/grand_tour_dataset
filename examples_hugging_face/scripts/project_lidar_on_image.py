@@ -44,7 +44,10 @@ def overlay_lidar_on_image(image, img_pts, depths, max_depth=30.0, cmap="inferno
 if __name__ == "__main__":
     mission = "2024-11-04-10-57-34"
     image_tags = ["hdr_front", "hdr_left", "hdr_right"]
-    lidar_tags = ["velodyne_points_undistorted"]  # "livox_points_undistorted", "hesai_points_undistorted",
+    lidar_tags = [
+        "hesai_points_undistorted",
+        "livox_points_undistorted",
+    ]  # "livox_points_undistorted", "hesai_points_undistorted", "velodyne_points_undistorted"
 
     mission_folder = Path("~/grand_tour_dataset").expanduser() / mission
     mission_root = zarr.open_group(mission_folder / "data", mode="r")
