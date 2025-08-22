@@ -466,7 +466,7 @@ if __name__ == "__main__":
                     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
                 plt.tight_layout()
 
-                Path(f"debug/{mission}").mkdir(parents=True, exist_ok=True)
-                plt.savefig(f"debug/{mission}/{j:04d}_elevation_map.png")
+                Path(f"debug/generate_elevation_maps/{mission}").mkdir(parents=True, exist_ok=True)
+                plt.savefig(f"debug/generate_elevation_maps/{mission}/{j:04d}_elevation_map.png")
                 plt.close(fig)
                 elevation_maps = []

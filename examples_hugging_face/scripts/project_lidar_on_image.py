@@ -88,8 +88,7 @@ if __name__ == "__main__":
                 depths = np.log(depths)
                 overlay = overlay_lidar_on_image(image, img_pts, depths, max_depth=np.log(15), cmap="turbo")
 
-                out_path = (
-                    Path("~/git/grand_tour_dataset/examples_hugging_face/data").expanduser()
-                    / f"overlay_{lidar_tag}_{img_tag}_{i:06d}.png"
-                )
+                dir_path = Path("debug") / "project_lidar_on_image" / mission
+                dir_path.mkdir(parents=True, exist_ok=True)
+                out_path = dir_path / f"overlay_{lidar_tag}_{img_tag}_{i:06d}.png"
                 cv2.imwrite(str(out_path), cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
