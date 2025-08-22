@@ -39,33 +39,18 @@ You can find Jupyter Notebooks and Scripts with full instructions in the [`examp
 <details>
 <summary> Click for installation details</summary>
 
-These steps assume you are using **[uv](https://github.com/astral-sh/uv)** for dependency management and that **Python 3.11** is not preinstalled.
+These steps assume you are using **[uv](https://github.com/astral-sh/uv)** for dependency management.
 
-### 1. Install `uv`
+### 1. Install using `uv`
 
 ```bash
 pip3 install uv
 uv install
+cd examples_hugging_face
+uv sync
+uv run scripts/download_data.py
 ```
 
-### 2. Install Python 3.11 (if not already installed)
-
-```bash
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install -y python3.11 python3.11-venv python3.11-distutils
-```
-
-### 3. Set Up the Virtual Environment
-
-```bash
-cd ~/git/grand_tour_dataset/examples_hugging_face
-mkdir .venv && cd .venv
-python3.11 -m venv grandtour
-source grandtour/bin/activate
-cd .. && uv pip install -r pyproject.toml
-jupyter notebook
-```
 
 </details>
 

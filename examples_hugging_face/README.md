@@ -1,4 +1,4 @@
-# 🔧 Additional Installations
+# 🔧 For manual installation if you dont use UV
 
 Some scripts require extra dependencies beyond the base installation.
 
@@ -35,14 +35,5 @@ We provide a Python-only installable version of **Elevation Mapping** (medium-te
 cd ~/git
 git clone git@github.com:leggedrobotics/elevation_mapping_cupy.git -b dev/python_library_installation
 cd elevation_mapping_cupy
-
-# Install dependencies
-uv pip install -r requirements.txt
-
-# Install CuPy (adapt the CUDA version as needed)
-uv pip install cupy-cuda12x
-
-# Install PyTorch (adapt the CUDA/Python version if needed)
-uv pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 \
-    --index-url https://download.pytorch.org/whl/cu121
+uv pip install -e ./
 ```

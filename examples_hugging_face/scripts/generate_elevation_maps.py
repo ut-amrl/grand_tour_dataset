@@ -17,9 +17,8 @@ from PIL import Image
 import trimesh
 import numpy as np
 from scipy import ndimage
-import plotly.graph_objects as go
 import imageio
-from grand_tour.zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
+from grand_tour.zarr_transforms import FastTfLookup
 
 
 def pq_to_se3(p, q):
@@ -55,7 +54,7 @@ def get_mesh(elevation_map, resolution, height_error, max_triangles=50000):
     min_val = elevation_map.min()
     span = elevation_map.max() - elevation_map.min()
     scaled_16bit = ((elevation_map - min_val) / (span) * 65535).astype(np.uint16)
-    Image.fromarray(scaled_16bit, mode="I;16").save("input.png")
+    Image.fromarray(scaled_16bit).convert("I;16").save("input.png")
     error = height_error / span
     # Installation via: https://github.com/fogleman/hmm/tree/master
     os.system(f"/usr/local/bin/hmm input.png /tmp/output.stl -z 1 -e {error} -t {max_triangles}")
@@ -197,7 +196,7 @@ class FastGetClosestTf:
 
 class ElevationMapWrapper:
     def __init__(self, map_length, resolution):
-        self.root = Path(elevation_mapping_cupy.__file__).parent.parent
+        self.root = Path(elevation_mapping_cupy.__file__).parent
         weight_file = self.root / "config/core/weights.dat"
         plugin_config_file = self.root / "config/core/plugin_config.yaml"
         self.param = Parameter(use_chainer=False, weight_file=weight_file, plugin_config_file=plugin_config_file)

@@ -50,7 +50,7 @@ def generate_masks(image_tags, mission_folder):
 
             mask_file_path = mission_folder / "images" / (image_tag + "_mask") / f"{image_id:06d}.png"
             # Save the binary mask as PNG
-            Image.fromarray(binary_mask, mode="L").save(mask_file_path)
+            Image.fromarray(binary_mask).convert("L").save(mask_file_path)
 
 
 def project_lidar_to_camera(

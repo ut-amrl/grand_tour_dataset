@@ -11,8 +11,33 @@ version = "0.1.0"
 description = "GrandTour HuggingFace Integration"
 authors = []
 readme = "README.md"
-requires-python = ">=3.10"
-dependencies = ["notebook", "zarr", "matplotlib", "plotly", "rich", "opencv-python", "IPython", "scipy", "imageio", "pathlib", "huggingface_hub", "transformers", "torch", "torchvision", "cupy-cuda12x", "scipy", "ruamel.yaml", "scikit-image", "simple-parsing", "networkx", "shapely", "elevation-mapping-cupy @ git+https://github.com/leggedrobotics/elevation_mapping_cupy@dev/python_library_installation"]
+requires-python = "==3.10.*"
+dependencies = [
+    "open3d",
+    "trimesh",
+    "notebook",
+    "zarr",
+    "matplotlib",
+    "plotly",
+    "rich",
+    "opencv-python",
+    "IPython",
+    "scipy",
+    "imageio",
+    "pathlib",
+    "huggingface_hub",
+    "transformers",
+    "torch",
+    "torchvision",
+    "cupy-cuda12x",
+    "scipy",
+    "ruamel.yaml",
+    "scikit-image",
+    "simple-parsing",
+    "networkx",
+    "shapely",
+    "elevation-mapping-cupy @ git+https://github.com/leggedrobotics/elevation_mapping_cupy@0195d20ef33bb48a49dcf1107fc1b4c6f56ad19b"
+]
 
 
 [project.optional-dependencies]

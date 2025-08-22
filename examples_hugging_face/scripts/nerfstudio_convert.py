@@ -56,7 +56,7 @@ class Masking:
         binary_mask[invalid_mask] = 0
 
         # Save the binary mask as PNG
-        Image.fromarray(binary_mask, mode="L").save(mask_file_path)
+        Image.fromarray(binary_mask).convert("L").save(mask_file_path)
 
         # Logging percentage human pixels
         # human_pixel_count = np.sum(human_mask)
