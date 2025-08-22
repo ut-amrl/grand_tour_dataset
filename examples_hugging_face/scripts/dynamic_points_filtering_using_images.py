@@ -126,7 +126,7 @@ def project_lidar_to_camera(
 
 def filter_lidar(mission_root, lidar_tags, image_tags, mission_folder):
     visu_3d = False
-    visu = False
+    visu = True
     add_to_zarr = True
 
     tf_lookup = FastTfLookup("anymal_state_odometry", mission_root, parent="base", child="odom")
@@ -242,7 +242,11 @@ def filter_lidar(mission_root, lidar_tags, image_tags, mission_folder):
 
                     # Convert overlay to BGR for cv2 if needed
                     overlay_bgr = cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR)
-                    cv2.imwrite(f"depth_overlay_{lidar_id}_{image_tag}.png", overlay_bgr)
+
+                    dir_path = Path("debug") / "dynamic_points_filtering_using_images" / mission
+                    dir_path.mkdir(parents=True, exist_ok=True)
+                    out_path = dir_path / f"depth_overlay_{lidar_id}_{image_tag}.png"
+                    cv2.imwrite(str(out_path), overlay_bgr)
 
             if add_to_zarr:
                 # Add the filtered lidar points to the zarr store
