@@ -465,6 +465,8 @@ if __name__ == "__main__":
                     ax.set_title(f"Step {j - 100 + i*10 } Elevation Map")
                     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
                 plt.tight_layout()
+
+                Path(f"debug/{mission}").mkdir(parents=True, exist_ok=True)
                 plt.savefig(f"debug/{mission}/{j:04d}_elevation_map.png")
                 plt.close(fig)
                 elevation_maps = []
