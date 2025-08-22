@@ -4,7 +4,7 @@ import cv2
 from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
-from zarr_transforms import inv, get_static_transform, FastTfLookup
+from grand_tour.zarr_transforms import inv, get_static_transform, FastTfLookup
 
 
 def project_lidar_to_camera(points, K, T_lidar_to_cam, W, H, D=None, model="pinhole"):

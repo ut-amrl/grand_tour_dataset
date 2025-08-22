@@ -19,7 +19,7 @@ import numpy as np
 from scipy import ndimage
 import plotly.graph_objects as go
 import imageio
-from zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
+from grand_tour.zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
 
 
 def pq_to_se3(p, q):

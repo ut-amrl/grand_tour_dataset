@@ -8,7 +8,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from scipy.ndimage import grey_dilation, grey_erosion
 from transformers import Mask2FormerImageProcessor, Mask2FormerForUniversalSegmentation
-from zarr_transforms import inv, get_static_transform, FastTfLookup
+from grand_tour.zarr_transforms import inv, get_static_transform, FastTfLookup
 
 
 TOLERANCE = 30

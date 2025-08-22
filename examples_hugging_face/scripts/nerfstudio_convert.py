@@ -8,7 +8,7 @@ from transformers import Mask2FormerImageProcessor, Mask2FormerForUniversalSegme
 from PIL import Image
 import zarr
 from tqdm import tqdm
-from zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
+from grand_tour.zarr_transforms import inv, get_static_transform, FastTfLookup, transform_points
 
 ROS_CAMERA_TO_OPENCV_CAMERA = np.array([[0, -1, 0, 0], [0, 0, -1, 0], [1, 0, 0, 0], [0, 0, 0, 1]], dtype=np.float32)
 
