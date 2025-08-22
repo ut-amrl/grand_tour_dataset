@@ -7,16 +7,12 @@ from matplotlib import cm
 # This tutorial explains how to convert points and messages between coordinate frames using transformation matrices.
 
 # Notation: We refer to a transform as having a parent frame and a child frame.
-# The transform from parent to child is denoted as T_parent_to_child == T_target_to_source.
-# This transform converts points from the source frame (parent) to the target frame (child).
+# The transform from parent to child is denoted as T_parent_to_child.
 
-# For example, suppose we have an odometry topic with parent "base" and child "odom".
-# The transform T_base_to_odom allows us to convert a point given in the base frame (p_base) to the odom frame:
+# For example, suppose we have an odometry topic with parent "odom" and child "base".
+# The transform T_odom_to_base is a 4x4 SE3 transformation and allows us to convert a point in homogenous coordinates given in the base frame (p_base) to the odom frame:
 
 # ```p_odom = T_odom_to_base @ p_base```
-
-# If you use right-side multiplication, the order of multiplication is reversed:
-# ```p_odom = p_base @ np.linalg.inv(T_odom_to_base)```
 
 # Using this notation, you can intuitively chain transforms:
 # To convert from the camera frame to the odom frame:
@@ -29,7 +25,7 @@ def inv(T_parent_to_child):
     t = T_parent_to_child[:3, 3]
     T_child_to_parent = np.eye(4)
     T_child_to_parent[:3, :3] = rot.T
-    T_child_to_parent[:3, 3] = -rot.T @ t
+    T_child_to_parent[:3, 3] = -T_child_to_parent[:3, :3] @ t
     return T_child_to_parent
 
 
