@@ -3,6 +3,9 @@ import numpy as np
 import plotly.graph_objects as go
 from pathlib import Path
 from grand_tour.zarr_transforms import FastTfLookup, inv
+import plotly.io as pio
+
+pio.renderers.default = "browser"
 
 if __name__ == "__main__":
     mission = "2024-11-04-10-57-34"
