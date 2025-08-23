@@ -377,16 +377,16 @@ if __name__ == "__main__":
         # "depth_camera_left",
         # "depth_camera_right",
         # "depth_camera_rear_upper",
-        "livox_points_undistorted_filtered",
-        "hesai_points_undistorted_filtered",
+        "livox_points_undistorted",
+        "hesai_points_undistorted",
     ]
     integration_settings = {
         "depth_camera_front_upper": (0.005, 10),
         # "depth_camera_rear_upper": (0.005, 5),
         # "depth_camera_left": (0.005, 5),
         # "depth_camera_right": (0.005, 5),
-        "hesai_points_undistorted_filtered": (0.005, 5),
-        "livox_points_undistorted_filtered": (0.015, 5),
+        "hesai_points_undistorted": (0.005, 5),
+        "livox_points_undistorted": (0.015, 5),
     }
     VISU_ELEVATION = True
     ODOM_TAG = "dlio_map_odometry"
