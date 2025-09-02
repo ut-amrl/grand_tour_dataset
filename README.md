@@ -11,16 +11,20 @@
   <a href="#hugging-face-instructions">Hugging Face</a> •
   <a href="#ros1-instructions">ROS1</a> •
   <a href="#contributing">Contributing</a>  •
+  <a href="#news">News</a>  •
   <a href="#citation">Citation</a>
 </p>
 
+
 ## References
 
-More instructions can be found on the [official webpage](https://grand-tour.leggedrobotics.com/).
+Please, at first, visit the [official webpage](https://grand-tour.leggedrobotics.com/) to learn more about the available data & hardware setup & registration.
 
-- Recording Setup
-- Dataset Explorer
-- Benchmarks
+Visit our [sponsors and partners](https://grand-tour.leggedrobotics.com/about).
+
+---
+
+<br>
 
 ## Projects using the GrandTour Dataset
 
@@ -31,52 +35,68 @@ More instructions can be found on the [official webpage](https://grand-tour.legg
 | [**Holistic Fusion**](https://github.com/leggedrobotics/holistic_fusion) <br> *Holistic State Estimation.*              |  <img src="assets/projects/nubert2025.png" height="64"/>|
 | [**RESPLE: Recursive Spline LIO**](https://asig-x.github.io/resple_web/) <br> *SoTA LiDAR Inertial Odometry.*              | <img src="assets/projects/cao2025.png" height="64"/> |
 
+---
 
-## Hugging Face Instructions (Data comeing soon)
+<br>
 
-You can find Jupyter Notebooks with full instructions in the [`examples_hugging_face`](./examples_hugging_face).  
-Requirements: Python>=3.11
-Examples Tested with: zarr==3.0.7
+## Hugging Face Instructions
+
+You can find Jupyter Notebooks and Scripts with full instructions in the [`examples_hugging_face`](./examples_hugging_face) directory.
+
+### Installation Instructions
 
 <details>
-<summary> Installation Instructions (UV with no preinstalled Python 3.11)</summary>
+<summary> Click for installation details</summary>
 
-#### Step 1: Install `uv` for Dependency Management
+These steps assume you are using **[uv](https://github.com/astral-sh/uv)** for dependency management.
+
+### 1. Install using `uv`
 
 ```bash
 pip3 install uv
 uv install
+cd examples_hugging_face
+uv sync
+uv run scripts/download_data.py
 ```
 
-#### Step 2: Install Python 3.11 (if not already installed)
-
-```bash
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install -y python3.11 python3.11-venv python3.11-distutils
-```
-
-#### Step 3: Set Up the Virtual Environment
-
-```bash
-cd ~/git/grand_tour_dataset/examples_hugging_face
-mkdir .venv; cd .venv
-python3.11 -m venv grandtour
-source grandtour/bin/activate
-cd ..; uv pip install -r pyproject.toml
-jupyter notebook
-```
 
 </details>
 
-List of examples:
 
-- [Accessing GrandTour Data](./examples_hugging_face/[0]_Accessing_GrandTour_Data.ipynb)
-- [Exploring GrandTour Data](./examples_hugging_face/[1]_Exploring_GrandTour_Data.ipynb)
+### 📒 Jupyter Notebook Examples
+
+* **[Accessing/Downloading GrandTour Data](./examples_hugging_face/notebooks/access.ipynb)** <br>*Learn how to download the GrandTour datasets from HuggingFace.*
+
+* **[Exploring GrandTour Data](./examples_hugging_face/notebooks/explore.ipynb)** <br>*Explore the dataset structure and learn how to work with Zarr data.*
+
+
+### 🐍 Python Scripts
+
+* **[zarr\_transforms.py](./examples_hugging_face/scripts/zarr_transforms.py)** <br>*Demonstrates how to use transforms and provides helper functions for Zarr data.*
+
+* **[plot\_lidar\_3d.py](./examples_hugging_face/scripts/plot_lidar_3d.py)** <br>*Visualize LiDAR data in 3D space.*
+
+* **[project\_lidar\_on\_image.py](./examples_hugging_face/scripts/project_lidar_on_image.py)** <br>*Project LiDAR points onto camera images, accounting for camera distortion and relative motion.*
+
+* **[dynamic\_points\_filtering\_using\_images.py](./examples_hugging_face/scripts/dynamic_points_filtering_using_images.py)** <br>*Removes dynamic objects from LiDAR point clouds using image segmentation and saves results in Zarr format.*
+
+* **[generate\_elevation\_maps.py](./examples_hugging_face/scripts/generate_elevation_maps.py)** <br>*Generates elevation maps from LiDAR and depth cameras.*
+
+* **[nerfstudio\_convert.py](./examples_hugging_face/scripts/nerfstudio_convert.py)** <br>*Converts datasets into nerfstudio format for training Gaussian Splatting models.*
+
+---
+
+<br>
 
 ## ROS1 Instructions
 
-### Downloading Rosbags
+
+### Download
+
+<details>
+<summary> Click here</summary>
+
 
 To access and download the GrandTour dataset rosbags, please follow these steps:
 
@@ -109,16 +129,19 @@ python3 examples_kleinkram/kleinkram_cli_example.py
 python3 examples_kleinkram/kleinkram_extract_images.py
 ```
 
----
 
 **Option 2 – Web Interface:**
 
 - Use the [GrandTour Dataset Web Interface](https://datasets.leggedrobotics.com/#/) to browse and download data directly.
 
----
+</details>
 
+### Installation
+
+<details>
+<summary> Click here</summary>
+  
 ### Create Folders
-
 ```shell
 mkdir -p ~/grand_tour_ws/src
 mkdir -p ~/git
@@ -163,7 +186,9 @@ klein login
 klein download --mission 3c97a27e-4180-4e40-b8af-59714de54a87
 ```
 
-### Run the Example
+</details>
+
+### Examples
 
 #### Terminal 1: Launch LiDARs
 
@@ -233,6 +258,10 @@ rosrun grand_tour_ros1 rosbag_play.sh --imus --ap20
 **Example Output:**
 ![assets/rqt-multiplot.png](assets/rqt-multiplot.png)
 
+---
+
+<br>
+
 ## Contributing
 
 We warmly welcome contributions to help us improve and expand this project. Whether you're interested in adding new examples, enhancing existing ones, or simply offering suggestions — we'd love to hear from you! Feel free to open an issue or reach out directly.
@@ -244,11 +273,19 @@ We are particularly looking for contributions in the following areas:
 - Visualization tools (e.g., Viser, etc.)
 - Hosting and deployment support in Asia
 
-### Upcoming Plans
+---
+
+<br>
+
+## News
 
 We're organizing a workshop at ICRA 2026 in Vienna and are currently looking for co-organizers and collaborators. We are also planning to write a community paper about this project. Everyone who contributes meaningfully will be included as a co-author.
 
 Let’s build this together — your input matters!
+
+---
+
+<br>
 
 ## Citation
 
