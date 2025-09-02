@@ -24,6 +24,8 @@ Visit our [sponsors and partners](https://grand-tour.leggedrobotics.com/about).
 
 ---
 
+<br>
+
 ## Projects using the GrandTour Dataset
 
 | Project                                                                                                  | Preview                                                                                           |
