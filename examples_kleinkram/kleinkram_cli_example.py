@@ -1,10 +1,13 @@
 import kleinkram
 from pathlib import Path
+import os
+
+SCRATCH_DIR = os.getenv("SCRATCH")
 
 missions = kleinkram.list_missions(project_names=["GrandTourDataset"])
 
-download_folder = "/tmp/grand_tour_data" # Change this to your desired download folder.
-patterns = ["*hdr_left.bag", "*_anymal_state.bag"] # Regex patterns to match file names or do ["*"] for all files.
+download_folder = f"{SCRATCH_DIR}/grand_tour_dataset" # Change this to your desired download folder.
+patterns = ["*_hdr_front.bag", "*_dlio.bag", "*_anymal_state.bag"] # Regex patterns to match file names or do ["*"] for all files.
 
 Path(download_folder).mkdir(parents=True, exist_ok=True)
 
@@ -16,9 +19,11 @@ for m in missions:
         vaild_mission_names.append(m.name)
         continue
 
+    mission_dir = Path(download_folder) / str(m.name)
+    mission_dir.mkdir(parents=True, exist_ok=True)
     kleinkram.download(
         file_ids=[f.id for f in files],
-        dest=download_folder,
+        dest=str(mission_dir),
         verbose=True,
         overwrite=True
     )
