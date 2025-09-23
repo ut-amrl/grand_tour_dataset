@@ -1,0 +1,27 @@
+<launch>
+    <arg name="box_namespace" default="gt_box" />
+    <!-- Arguments to enable or disable uncompression and undistortion -->
+    <arg name="enable_uncompression" default="true" />
+    <arg name="enable_undistortion" default="true" />
+    <group ns="grand_tour">
+        <include file="$(find box_model)/launch/box_model.launch" />
+        <include file="$(find anymal_d_simple_description)/launch/load.launch" />
+    </group>
+
+    <group if="$(arg enable_uncompression)">
+        <!-- HDR Cameras -->
+        <node name="img_transport_hdr_front" pkg="image_transport" type="republish"
+            output="screen"
+            args="compressed in:=/boxi/hdr/front/image_raw raw out:=/boxi/hdr/front/image_raw" />
+    </group>
+
+    <!-- Nodes to undistort the images -->
+    <group if="$(arg enable_undistortion)">
+        <node
+            name="img_undistort_hdr_front" pkg="image_proc" type="image_proc" output="screen"
+            ns="/boxi/hdr/front">
+            <remap from="image_raw" to="image_raw" />
+            <remap from="camera_info" to="camera_info" />
+        </node>
+    </group>
+</launch>
