@@ -1,3 +1,11 @@
+# AMRL Modifications
+
+To launch the sensors without Gazebo or Rviz support, run the command below
+
+```bash
+roslaunch grand_tour_ros1 sensors.launch
+```
+
 <h1 align="center" style="margin-bottom: 0;">
   <br>
   The GrandTour Dataset
